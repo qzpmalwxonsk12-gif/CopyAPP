@@ -1,5 +1,20 @@
 # CopyAPP
 
+## Repository guide and prerequisites
+
+CopyAPP is a **Windows clipboard manager and content/export desktop app**. Its React/TypeScript interface runs inside Tauri 2; Rust handles desktop/storage/clipboard functionality. The source declares version **0.1.3**. It is separate from the Select Clean Body Text Chrome extension, though the two can be used in the same collection workflow.
+
+For a native build, install a Node.js version compatible with Vite 7, npm, Rust/Cargo, the Windows C++ build tools required by Tauri and WebView2 support. `src-tauri/Cargo.toml` records the Rust/package requirements; generated native binaries are not bundled here.
+
+```powershell
+npm ci
+npm run tauri:dev
+```
+
+For a release package use `npm run tauri:build`. `npm run dev` starts the web interface only; browser-only preview does not prove that native clipboard, tray, storage or global-shortcut integration works. Frontend checks/builds are available as `npm run check` and `npm run build`.
+
+The main source areas are `src/` for the interface and `src-tauri/` for the desktop backend/configuration. Clipboard history and other runtime data belong in the app's local storage, not in Git. Review the shortcut and export behaviour below, especially before collecting private clipboard content or assuming that a generated PDF exactly matches the original webpage.
+
 CopyAPP is a private, local-first clipboard manager for Windows. It runs in the
 system tray, records supported clipboard formats in SQLite, and lets you paste
 one of the ten newest entries without opening the window.
@@ -69,3 +84,8 @@ hotkey because it contains two non-modifier keys. CopyAPP therefore uses
 `WH_KEYBOARD_LL` on Windows, preserves the physical Ctrl state, ignores its own
 injected input, and forwards an ordinary paste when the sequence is not
 completed.
+
+
+## Source snapshot and validation
+
+See [BACKUP_NOTES.md](BACKUP_NOTES.md) for the omitted build outputs, local settings, credentials and runtime data. Build generated binaries locally using the instructions above; a source checkout is not an installed application. Earlier validation figures in this guide describe their original development runs. This documentation update checks source references and instructions; it does not claim a fresh application, device or gameplay test.
