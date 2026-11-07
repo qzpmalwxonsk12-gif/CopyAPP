@@ -1,0 +1,25 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+
+# Local credentials and generated files
+.env
+.env.local
+*.jks
+*.keystore
+keystore.properties
+local.properties
+node_modules/
+.gradle/
+.venv/
+__pycache__/
